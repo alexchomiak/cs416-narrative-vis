@@ -190,8 +190,9 @@ async function main() {
     scene1.appendChild(stringToHTML(`<div width="100%" height="100%">
     <h1>Observed Near Earth Objects by NASA from 1990-2021</h1>
     <p> Observed near earth objects have increased drastically year over year towards the end of the 20th century. This
-    is probably due to the rapid improvement in technology, which has allowed NASA to more efficiently observe Near Earth Objects as they
-    approach the earth. </p>
+    is probably due to the rapid improvement in radio & telescopic technology, which has allowed NASA to more efficiently observe Near Earth Objects as they
+    approach the earth. As technology only improves, we can expect the number of objects we observe to only increase. We will be able to more accurately observe these objects
+    and their respective trajectories. </p>
     <p>
     <b> Click the annotations for more context! </b>
     </p>
