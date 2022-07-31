@@ -140,7 +140,7 @@ function getYear(date) {
 
 // * Async main function
 async function main() {
-    const data = (await d3.csv("/data.csv")).map(d => {
+    const data = (await d3.csv(window.location.href + "/data.csv")).map(d => {
         const diam = getDiameter(d['Diameter'])
         return {
             ...d, "Diameter": diam,
@@ -154,7 +154,7 @@ async function main() {
     introScene.appendChild(stringToHTML(`<div> 
     <h1>Near Earth Objects from 1900-2021</h1> 
     <h3><i>Narrative visualization project for CS416 (achomi2@illinois.edu)</i></h3> 
-    <img src="/nearearth.gif" alt="gun violence" width="50%" height="50%" >
+    <img src="${window.location.href}nearearth.gif" alt="gun violence" width="50%" height="50%" >
     <p> This is a interactive slideshow digging into the dataset Near Earth Objects observed by NASA from 1900-2021</p>
     <a href="https://www.kaggle.com/datasets/ramjasmaurya/near-earth-objects-observed-by-nasa">Link to Dataset</a>
     <button onclick="setScene('scene1')">Start</button>
