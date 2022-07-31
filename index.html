@@ -1,12 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CS416 Narrative Visualization</title>
+    <!-- Load in D3.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js"
+        integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcpH67teDZcBeS6oMJLPtTqw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+            background: black;
+            color: white;
+            
+        }
+        #tooltip2 {
+            white-space: nowrap;
+            border: 1px solid white;
+            border-radius: 1rem;
+            padding: 1rem;
+            background: #1472d6        
+        }
+
+        #tooltip2 p {
+            margin: .1rem;
+        }
+        #tooltip2 h3 {
+            margin: .5rem;
+        }
+        svg {
+            border-radius: 1rem;
+            border: 1px solid white;
+        }
+
+        #scene1svg {
+            background: url("https://images.immediate.co.uk/production/volatile/sites/25/2022/04/GettyImages-AB10781-4a73f06.jpg");
+            background-size: contain;
+
+        }
+        
+        .text-white {
+            color: white;
+        }
+
+        .axis-white {
+            color: white;
+            stroke: white;
+        }
+        
+        #scene2 svg {
+            background: url("https://media.istockphoto.com/photos/seamless-texture-of-the-night-sky-picture-id1148605619?k=20&m=1148605619&s=170667a&w=0&h=BhlRrJpW9jbd_nlDM90rGTEE1ipqq5gVPIQsQfBQYko=");
+            background-size: contain;                   
+        }
+
+        .path-blue {
+            stroke: #5db3ff;
+            fill: none;
+            stroke-width: 2px;
+        }
+        /* Fancy button CSS:  https://getcssscan.com/css-buttons-examples*/
+
+        #backButton {
+            width: 30%;
+            margin: 1rem auto;
+            display: block;
+
+        }
+
+        button:disabled {
+            opacity: .1;
+        }
+
+        button {
+            background-color: rgba(222, 222, 222, 0.673);
+            border-radius: 8px;
+            border-width: 0;
+            color: #333333;
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 10px 12px;
+            text-align: center;
+            transition: all 200ms;
+            vertical-align: baseline;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        #visContainer {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            border: 3px solid black;
+            width: 80%;
+            height: 80%;
+            text-align: center;
+        }
+
+        #intro button {
+            width: 50%;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        p {
+            display: block;
+            margin: 1rem auto;
+            width: 50%;
+            text-align: justify;
+
+        }
+
+        :root {
+            --accent-color: #ffffff;
+        }
+
+        svg {
+            background-color: white;
+            font-family: 'Lato';
+            margin: 1rem;
+        }
+
+        path.line {
+            fill: none;
+            stroke: lightgrey;
+            stroke-width: 1px;
+        }
+
+        .annotation path {
+            stroke: var(--accent-color);
+            fill: none;
+        }
+
+        .annotation path.connector-arrow,
+        .title text,
+        .annotation text,
+        .annotation.callout.circle .annotation-subject path {
+            fill: var(--accent-color);
+        }
+
+        .annotation-note-bg {
+            fill: rgba(255, 255, 255, 0);
+        }
+
+        .annotation-note-title {
+            font-weight: bold;
+        }
+
+        .annotation.xythreshold {
+            cursor: move;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        text.hover {
+            font-size: .7em;
+        }
+
+        text.title {
+            font-size: 1.1em;
+        }
+    </style>
 </head>
+
 <body>
-    Hello World 😎 ♥️
+    <!-- Parent container for visualization -->
+    <button id="backButton" onclick="navigateBack()">Go to previous scene</button>
+
+
+    <div id="visContainer" />
+
+    <div id="visStage"></div>
+
+    <script src="index.js"></script><!-- HTML !-->
 </body>
+
 </html>
